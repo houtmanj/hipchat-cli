@@ -1,6 +1,6 @@
 {
   "description": "hipchat commandline utility", 
-  "key": "hipchat-cli", 
+  "key": "hipchatcli", 
   "name": "Hipchat CLI", 
   "vendor": {
     "name": "jhoutman", 
@@ -13,7 +13,7 @@
     "hipchatApiConsumer": {
       "scopes": [
         "send_notification",
-	"manage_rooms"
+	"manage_rooms",
       ]
     }, 
     "installable": {
