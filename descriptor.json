@@ -1,11 +1,11 @@
 {
   "description": "hipchat commandline utility", 
-  "key": "hipchatcli", 
+  "key": "hipchatcli",
   "name": "Hipchat CLI", 
   "vendor": {
     "name": "jhoutman", 
     "url": "https://github.com/houtmanj/hipchat-cli"
-  }
+  },
   "links": {
     "self": "https://github.com/houtmanj/hipchat-cli/blob/master/descriptor.json"
   }, 
@@ -13,7 +13,7 @@
     "hipchatApiConsumer": {
       "scopes": [
         "send_notification",
-	"manage_rooms",
+	"manage_rooms"
       ]
     }, 
     "installable": {
@@ -22,4 +22,5 @@
       "installedUrl": "https://your-addon-url/installed",
       "updatedUrl": "https://your-addon-url/updated"
     }
+  }
 }

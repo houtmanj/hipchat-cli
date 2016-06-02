@@ -4,6 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"github.com/tbruyelle/hipchat-go/hipchat"
+	//"github.com/davecgh/go-spew/spew"
+
 	"os"
 )
 
@@ -34,7 +36,12 @@ func main() {
 		c.Room.Invite(*room, *invite, *reason)
 	} else if *msg != "" {
 		fmt.Printf("Sending msg to %v: %v\n", *room, *msg)
-		c.Room.Notification(*room, &hipchat.NotificationRequest{Message: *msg})
+		r, err := c.Room.Notification(*room, &hipchat.NotificationRequest{Message: *msg})
+		if err != nil {
+		  fmt.Printf("%v: %v", err, r.Status)
+		}
+		//spew.Dump(err)
+		//spew.Dump(r)
 	} else if *topic != "" {
 		fmt.Printf("Setting topic in %v: %v\n", *room, *topic)
 		resp, err := c.Room.SetTopic(*room, *topic)
