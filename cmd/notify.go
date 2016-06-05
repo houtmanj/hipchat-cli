@@ -33,7 +33,9 @@ var notifyCmd = &cobra.Command{
 		cmd.Printf("Sending '%v' to %v\n", message, room)
 
 		resp, err := c.Room.Notification(room, &hipchat.NotificationRequest{Message: message, Notify: notify})
-		internal.Debug(httputil.DumpResponse(resp, true))
+		if resp != nil {
+			internal.Debug(httputil.DumpResponse(resp, true))
+		}
 		return err
 	},
 }
