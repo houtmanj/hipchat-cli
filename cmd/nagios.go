@@ -22,16 +22,17 @@ var typeInvalid = nagiosType{str: "invalid"}
 type nagiosStatus struct {
 	str   string
 	color string
+	style string
 }
 
-var statusCritical = nagiosStatus{str: "critical", color: "red"}
-var statusWarning = nagiosStatus{str: "warning", color: "yellow"}
-var statusUnknown = nagiosStatus{str: "unknown", color: "purple"}
-var statusOk = nagiosStatus{str: "ok", color: "green"}
-var statusInvalid = nagiosStatus{str: "invalid", color: "purple"}
-var statusUp = nagiosStatus{str: "up", color: "green"}
-var statusDown = nagiosStatus{str: "down", color: "red"}
-var statusUnreachable = nagiosStatus{str: "unreachable", color: "red"}
+var statusCritical = nagiosStatus{str: "critical", color: "red", style: "lozenge-success"}
+var statusWarning = nagiosStatus{str: "warning", color: "yellow", style: "lozenge-current"}
+var statusUnknown = nagiosStatus{str: "unknown", color: "purple", style: "lozenge-moved"}
+var statusOk = nagiosStatus{str: "ok", color: "green", style: "lozenge-success"}
+var statusInvalid = nagiosStatus{str: "invalid", color: "purple", style: "lozenge-moved"}
+var statusUp = nagiosStatus{str: "up", color: "green", style: "lozenge-success"}
+var statusDown = nagiosStatus{str: "down", color: "red", style: "lozenge-error"}
+var statusUnreachable = nagiosStatus{str: "unreachable", color: "red", style: "lozenge-error"}
 
 var serviceType = nagiosType{str: "service"}
 var hostType = nagiosType{str: "host"}
@@ -83,7 +84,9 @@ hipchat-cli nagios --room production  --type service --status critical --service
 		room := cmd.Flag("room").Value.String()
 
 		resp, err := c.Room.Notification(room, n)
-		internal.Debug(httputil.DumpResponse(resp, true))
+		if resp != nil {
+			internal.Debug(httputil.DumpResponse(resp, true))
+		}
 		return err
 	},
 }
@@ -281,5 +284,5 @@ func getAttributeLabels(notif nagiosNotification) []hipchat.Attribute {
 }
 
 func getTypeLabel(notif nagiosNotification) hipchat.Attribute {
-	return hipchat.Attribute{Label: "type", Value: hipchat.AttributeValue{Label: "Recovery", Style: "lozenge-success"}}
+	return hipchat.Attribute{Label: "type", Value: hipchat.AttributeValue{Label: strings.Title(notif.Status.str), Style: notif.Status.style}}
 }
