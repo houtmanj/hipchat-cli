@@ -1,8 +1,6 @@
 package internal
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func Debug(data []byte, err error) {
 	if !DebugLogging {

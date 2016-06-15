@@ -21,18 +21,18 @@ var typeInvalid = nagiosType{str: "invalid"}
 
 type nagiosStatus struct {
 	str   string
-	color string
+	color hipchat.Color
 	style string
 }
 
-var statusCritical = nagiosStatus{str: "critical", color: "red", style: "lozenge-success"}
-var statusWarning = nagiosStatus{str: "warning", color: "yellow", style: "lozenge-current"}
-var statusUnknown = nagiosStatus{str: "unknown", color: "purple", style: "lozenge-moved"}
-var statusOk = nagiosStatus{str: "ok", color: "green", style: "lozenge-success"}
-var statusInvalid = nagiosStatus{str: "invalid", color: "purple", style: "lozenge-moved"}
-var statusUp = nagiosStatus{str: "up", color: "green", style: "lozenge-success"}
-var statusDown = nagiosStatus{str: "down", color: "red", style: "lozenge-error"}
-var statusUnreachable = nagiosStatus{str: "unreachable", color: "red", style: "lozenge-error"}
+var statusCritical = nagiosStatus{str: "critical", color: hipchat.ColorRed, style: "lozenge-success"}
+var statusWarning = nagiosStatus{str: "warning", color: hipchat.ColorYellow, style: "lozenge-current"}
+var statusUnknown = nagiosStatus{str: "unknown", color: hipchat.ColorPurple, style: "lozenge-moved"}
+var statusOk = nagiosStatus{str: "ok", color: hipchat.ColorGreen, style: "lozenge-success"}
+var statusInvalid = nagiosStatus{str: "invalid", color: hipchat.ColorPurple, style: "lozenge-moved"}
+var statusUp = nagiosStatus{str: "up", color: hipchat.ColorGreen, style: "lozenge-success"}
+var statusDown = nagiosStatus{str: "down", color: hipchat.ColorRed, style: "lozenge-error"}
+var statusUnreachable = nagiosStatus{str: "unreachable", color: hipchat.ColorRed, style: "lozenge-error"}
 
 var serviceType = nagiosType{str: "service"}
 var hostType = nagiosType{str: "host"}
