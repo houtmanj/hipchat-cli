@@ -48,6 +48,7 @@ func GetClient() (*hipchat.Client, error) {
 	}
 
 	c = token.CreateClient()
+	c.SetHTTPClient(httpclient)
 	c, err = configureEndpoint(c)
 	if err != nil {
 		return nil, fmt.Errorf("Error while configuring client: %v", err)
